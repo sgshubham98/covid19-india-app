@@ -1,3 +1,4 @@
+import 'package:covid19_app/screens/state_wise.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:covid19_app/services/data_model.dart';
@@ -15,11 +16,12 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void initState() {
     super.initState();
     getModelData();
+    // getStateData();
   }
 
   void getModelData() async {
     var apiData = await model.getApiData();
-    Navigator.push(
+    Navigator.pushReplacement(
       context,
       MaterialPageRoute(
         builder: (context) {
@@ -30,6 +32,23 @@ class _LoadingScreenState extends State<LoadingScreen> {
       ),
     );
   }
+
+  // void getStateData() async {
+  //   var apiData = await model.getApiData();
+  //   StateScreen(
+  //     stateData: apiData,
+  //   );
+  //   Navigator.pushReplacement(
+  //     context,
+  //     MaterialPageRoute(
+  //       builder: (context) {
+  //         return StateScreen(
+  //           stateData: apiData,
+  //         );
+  //       },
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
