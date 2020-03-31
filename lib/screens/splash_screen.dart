@@ -1,3 +1,4 @@
+import 'package:covid19_app/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -24,12 +25,29 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text('COVID-19'),
-            Text('Stay Home Stay Safe'),
+            Image(
+              image: AssetImage('assets/images/virus.png'),
+              height: height / 6,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'COVID-19 INDIA',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 32.0,
+                  color: kTitleColor,
+                ),
+              ),
+            ),
           ],
         ),
       ),

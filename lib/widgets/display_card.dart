@@ -12,7 +12,7 @@ class DisplayCard extends StatelessWidget {
 
   final String text;
   final int value;
-  final int delta;
+  final String delta;
   final Color color;
   final Color deltaColor;
   final Color cardColor;
@@ -28,7 +28,7 @@ class DisplayCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                '+' + delta.toString(),
+                delta.toString(),
                 style: TextStyle(
                   fontSize: 14.0,
                   color: deltaColor,

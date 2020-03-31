@@ -12,4 +12,13 @@ const Color kConfirmedCardColor = Color(0xFFFFDFCF);
 const Color kRecoveredDeltaColor = Color(0xFF7FCA8F);
 const Color kRecoveredCardColor = Color(0xFFBFDCBF);
 const Color kTitleColor = Color(0xFF222B45);
-const Color kChartBackgroundColor = Color(0xFFA8ABAB);
+const Color kChartBackgroundColor = Color(0xFF404659);
+
+const Text kAppBarTitle = Text(
+  'COVID-19 India',
+  style: TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 24.0,
+    color: kTitleColor,
+  ),
+);

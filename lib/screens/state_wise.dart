@@ -1,3 +1,4 @@
+import 'package:covid19_app/utilities/constants.dart';
 import 'package:flutter/material.dart';
 
 class StateScreen extends StatefulWidget {
@@ -52,33 +53,49 @@ class _StateScreenState extends State<StateScreen> {
           ],
         );
         dataCellsList.add(dataRow);
-      };
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: SingleChildScrollView(
-          child: DataTable(
-            columnSpacing: MediaQuery.of(context).size.width / 12,
-            columns: [
-              DataColumn(
-                label: Text('State'),
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              'State Wise Data',
+              style: TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+                color: kTitleColor,
               ),
-              DataColumn(
-                label: Text('Infected'),
+            ),
+            SingleChildScrollView(
+              // scrollDirection: Axis.horizontal,
+              child: DataTable(
+                columnSpacing: 24.0,
+                columns: [
+                  DataColumn(
+                    
+                    label: Text('State'),
+                  ),
+                  DataColumn(
+                    label: Text('Infected'),
+                  ),
+                  DataColumn(
+                    label: Text('Active'),
+                  ),
+                  DataColumn(
+                    label: Text('Deaths'),
+                  ),
+                ],
+                rows: dataCellsList,
               ),
-              DataColumn(
-                label: Text('active'),
-              ),
-              DataColumn(
-                label: Text('Deaths'),
-              ),
-            ],
-            rows: dataCellsList,
-          ),
+            ),
+          ],
         ),
       ),
     );
