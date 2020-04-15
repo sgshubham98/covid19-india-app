@@ -1,16 +1,34 @@
-# Covid 19 India App
+<!--
+  Title: COVID-19 India
+  Description: App for India specific COVID-19 data
+  Author: Shubham Goswami (sgshubham98)
+  -->
 
-A new Flutter project.
+# COVID-19 India App
 
-## Getting Started
+Mobile App for COVID-19 stats in India, sourced from [The Ministry of Health and Family Welfare](https://www.mohfw.gov.in/)
+and separately from [unofficial sources](#unofficial-sources).
 
-This project is a starting point for a Flutter application.
+<!-- ## API -->
 
-A few resources to get you started if this is your first Flutter project:
+<!-- #### Official data
+* Case counts:
+  * https://api.rootnet.in/covid19-in/stats/latest
+  * https://api.rootnet.in/covid19-in/stats/history
+* Testing stats:
+  * https://api.rootnet.in/covid19-in/stats/testing/latest
+  * https://api.rootnet.in/covid19-in/stats/testing/history
+  * https://api.rootnet.in/covid19-in/stats/testing/raw
+* Hospitals & bed stats: https://api.rootnet.in/covid19-in/stats/hospitals
+* Contact & helpline: https://api.rootnet.in/covid19-in/contacts
+* Notifications & advisories: https://api.rootnet.in/covid19-in/notifications
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+#### Unofficial data
+* Unofficial sources: https://api.rootnet.in/covid19-in/unofficial/sources
+* Unofficial patient tracing data: https://api.rootnet.in/covid19-in/unofficial/covid19india.org
+* Unofficial statewise: https://api.rootnet.in/covid19-in/unofficial/covid19india.org/statewise
+* Unofficial statewise history: https://api.rootnet.in/covid19-in/unofficial/covid19india.org/statewise/history
+* Unofficial patient travel history: https://api.rootnet.in/covid19-in/unofficial/covid19india.org/travelhistory -->
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Unofficial sources
+* The awesome volunteer driven patient tracing data [covid19india.org](https://www.covid19india.org/)
