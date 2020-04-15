@@ -19,51 +19,49 @@ class DisplayCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        height: MediaQuery.of(context).size.height / 5.0,
-        child: Padding(
-          padding: const EdgeInsets.only(right: 8.0, left: 8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                delta.toString(),
-                style: TextStyle(
-                  fontSize: 14.0,
-                  color: deltaColor,
-                ),
+    return Container(
+      height: MediaQuery.of(context).size.height / 5.0,
+      child: Padding(
+        padding: const EdgeInsets.only(right: 8.0, left: 8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              delta.toString(),
+              style: TextStyle(
+                fontSize: 14.0,
+                color: deltaColor,
               ),
-              SizedBox(
-                height: 4.0,
+            ),
+            SizedBox(
+              height: 4.0,
+            ),
+            Text(
+              value.toString(),
+              style: TextStyle(
+                fontSize: 32.0,
+                fontWeight: FontWeight.bold,
+                color: deltaColor,
               ),
-              Text(
-                value.toString(),
-                style: TextStyle(
-                  fontSize: 32.0,
-                  fontWeight: FontWeight.bold,
-                  color: deltaColor,
-                ),
+            ),
+            SizedBox(
+              height: 4.0,
+            ),
+            Text(
+              text,
+              style: TextStyle(
+                color: color,
+                fontSize: 16.0,
+                fontWeight: FontWeight.bold,
               ),
-              SizedBox(
-                height: 4.0,
-              ),
-              Text(
-                text,
-                style: TextStyle(
-                  color: color,
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
-        margin: EdgeInsets.all(6.0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          color: cardColor,
-        ),
+      ),
+      margin: EdgeInsets.all(6.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        color: cardColor,
       ),
     );
   }

@@ -25,29 +25,30 @@ class ReusableContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        Container(
-          height: MediaQuery.of(context).size.height / 5.0,
-          width: double.infinity,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 4.0),
-                  child: Text(
-                    content,
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.44,
-                      color: Colors.white,
+        GestureDetector(
+          onTap: onTap,
+          child: Container(
+            height: MediaQuery.of(context).size.height / 5.0,
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 4.0),
+                    child: Text(
+                      content,
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.44,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                ),
-                GestureDetector(
-                  child: Container(
+                  Container(
                     child: Text(
                       buttonText == null ? "" : buttonText,
                       style: TextStyle(
@@ -55,16 +56,15 @@ class ReusableContainer extends StatelessWidget {
                         color: Colors.pink,
                       ),
                     ),
-                  ),
-                  onTap: onTap,
-                )
-              ],
+                  )
+                ],
+              ),
             ),
-          ),
-          margin: EdgeInsets.all(6.0),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.0),
-            color: kTitleColor,
+            margin: EdgeInsets.all(6.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8.0),
+              color: kTitleColor,
+            ),
           ),
         ),
         Positioned(

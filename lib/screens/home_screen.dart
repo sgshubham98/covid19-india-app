@@ -1,3 +1,4 @@
+import 'package:covid19_app/screens/pre_symp_screens.dart';
 import 'package:covid19_app/screens/precautions_screen.dart';
 import 'package:covid19_app/screens/symptoms_screen.dart';
 import 'package:covid19_app/widgets/reusable_container.dart';
@@ -84,7 +85,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       }
       currentTime = DateFormat.jm().format(now);
       /* Overall data */
-      lastupdatedtime = apiData['statewise'][0]['lastupdatedtime'].substring(0, 10) + ' ';
+      lastupdatedtime =
+          apiData['statewise'][0]['lastupdatedtime'].substring(0, 10) + ' ';
       lastupdatedtime += currentTime;
       confirmedDelta = int.parse(apiData['statewise'][0]['deltaconfirmed']);
       deceasedDelta = int.parse(apiData['statewise'][0]['deltadeaths']);
@@ -94,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       active = int.parse(apiData['statewise'][0]['active']);
       recovered = confirmed - active - deceased;
       /* Overall data ends */
-      
+
       /* Data for chart */
       caseTimeSeries = apiData['cases_time_series'];
       for (int i = 0; i < caseTimeSeries.length; i++) {
@@ -106,12 +108,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             xAxis: DateTime(2020, 01, 30).add(Duration(days: i)),
           ),
         );
-        totalConfirmedList.add(int.parse(caseTimeSeries[i]['totalconfirmed']));
-        totalDeathsList.add(int.parse(caseTimeSeries[i]['totaldeceased']));
-        totalRecoveredList.add(int.parse(caseTimeSeries[i]['totalrecovered']));
       }
       /* Data for chart ends */
-      
+
       animation = CurvedAnimation(
         parent: animationController,
         curve: Curves.ease,
@@ -137,73 +136,18 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(left: 4.0),
-                          child: Stack(
-                            children: <Widget>[
-                              Container(
-                                height:
-                                    MediaQuery.of(context).size.height / 5.0,
-                                width: double.infinity,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(16.0),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 4.0),
-                                        child: Text(
-                                          'Symptoms of COVID-19',
-                                          style: TextStyle(
-                                            fontSize: 16.0,
-                                            fontWeight: FontWeight.bold,
-                                            letterSpacing: 1.44,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ),
-                                      GestureDetector(
-                                        child: Container(
-                                          child: Text(
-                                            'Tap to know more',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.pink,
-                                            ),
-                                          ),
-                                        ),
-                                        onTap: () {
-                                          setState(() {
-                                            currentIndex = 2;
-                                          });
-                                        },
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                margin: EdgeInsets.all(6.0),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  color: kTitleColor,
-                                ),
-                              ),
-                              Positioned(
-                                left: 4,
-                                bottom: 4,
-                                child: Transform.rotate(
-                                  angle: 0.0,
-                                  child: Image(
-                                    image: AssetImage(
-                                        'assets/images/coronavirus.png'),
-                                    height:
-                                        MediaQuery.of(context).size.height / 7,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                        ReusableContainer(
+                          content: 'Symptoms of COVID-19',
+                          buttonText: 'Tap to know more',
+                          onTap: () {
+                            setState(() {
+                              currentIndex = 3;
+                            });
+                          },
+                          left: 5.0,
+                          bottom: 4.0,
+                          imageName: 'coronavirus',
+                          imageHeight: MediaQuery.of(context).size.height / 7,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(
@@ -248,46 +192,45 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             textAlign: TextAlign.left,
                           ),
                         ),
-                        Row(
+                        Column(
                           children: <Widget>[
-                            DisplayCard(
-                              value: confirmed,
-                              delta: (confirmed >=
-                                          totalConfirmedList[
-                                              totalConfirmedList.length - 1]
-                                      ? '+'
-                                      : '-') +
-                                  confirmedDelta.toString(),
-                              text: 'INFECTED',
-                              color: kConfirmedColor,
-                              deltaColor: kConfirmedDeltaColor,
-                              cardColor: kConfirmedCardColor,
+                            Row(
+                              children: <Widget>[
+                                Expanded(
+                                  child: DisplayCard(
+                                    value: confirmed,
+                                    delta: '+' + confirmedDelta.toString(),
+                                    text: 'INFECTED',
+                                    color: kConfirmedColor,
+                                    deltaColor: kConfirmedDeltaColor,
+                                    cardColor: kConfirmedCardColor,
+                                  ),
+                                ),
+                              ],
                             ),
-                            DisplayCard(
-                              value: recovered,
-                              delta: (recovered >=
-                                          totalRecoveredList[
-                                              totalRecoveredList.length - 1]
-                                      ? '+'
-                                      : '-') +
-                                  recoveredDelta.toString(),
-                              text: 'RECOVERY',
-                              color: kRecoveredColor,
-                              deltaColor: kRecoveredDeltaColor,
-                              cardColor: kRecoveredCardColor,
-                            ),
-                            DisplayCard(
-                              value: deceased,
-                              delta: (deceased >=
-                                          totalDeathsList[
-                                              totalDeathsList.length - 1]
-                                      ? '+'
-                                      : '-') +
-                                  deceasedDelta.toString(),
-                              text: 'DEATHS',
-                              color: kDeathColor,
-                              deltaColor: kDeathDeltaColor,
-                              cardColor: kDeathCardColor,
+                            Row(
+                              children: <Widget>[
+                                Expanded(
+                                  child: DisplayCard(
+                                    value: recovered,
+                                    delta: '+' + recoveredDelta.toString(),
+                                    text: 'RECOVERED',
+                                    color: kRecoveredColor,
+                                    deltaColor: kRecoveredDeltaColor,
+                                    cardColor: kRecoveredCardColor,
+                                  ),
+                                ),
+                                Expanded(
+                                  child: DisplayCard(
+                                    value: deceased,
+                                    delta: '+' + deceasedDelta.toString(),
+                                    text: 'DEATHS',
+                                    color: kDeathColor,
+                                    deltaColor: kDeathDeltaColor,
+                                    cardColor: kDeathCardColor,
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
@@ -335,7 +278,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 showVerticalIndicator: false,
                                 showDataPoints: true,
                                 backgroundColor: Colors.white10,
-                                // displayYAxis: true,
                               ),
                             ),
                             decoration: BoxDecoration(
@@ -357,7 +299,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           left: 6.0,
                           bottom: 1.0,
                           imageName: 'hand_wash',
-                          imageHeight: MediaQuery.of(context).size.height / 6,
+                          imageHeight: MediaQuery.of(context).size.height / 7,
                         ),
                       ],
                     ),
@@ -366,7 +308,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               : (currentIndex == 1
                   ? StateScreen(stateData: widget.modelData)
                   : (currentIndex == 3)
-                      ? PrecautionsScreen()
+                      ? PreSympScreen()
                       : SymptomsScreen()),
           bottomNavigationBar: BottomNavyBar(
             selectedIndex: currentIndex,
@@ -402,7 +344,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               ),
               BottomNavyBarItem(
                 icon: Icon(Icons.healing),
-                title: Text('Precautions'),
+                title: Text('Symptoms and Precautions'),
                 activeColor: Colors.red,
                 textAlign: TextAlign.center,
                 inactiveColor: Colors.grey,
