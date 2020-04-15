@@ -1,5 +1,5 @@
+import 'package:covid19_app/screens/about.dart';
 import 'package:covid19_app/screens/pre_symp_screens.dart';
-import 'package:covid19_app/screens/precautions_screen.dart';
 import 'package:covid19_app/screens/symptoms_screen.dart';
 import 'package:covid19_app/widgets/reusable_container.dart';
 import 'package:flutter/gestures.dart';
@@ -309,7 +309,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   ? StateScreen(stateData: widget.modelData)
                   : (currentIndex == 3)
                       ? PreSympScreen()
-                      : SymptomsScreen()),
+                      : (currentIndex == 4) ? AboutScreen() : SymptomsScreen()),
           bottomNavigationBar: BottomNavyBar(
             selectedIndex: currentIndex,
             showElevation: true,
@@ -344,7 +344,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               ),
               BottomNavyBarItem(
                 icon: Icon(Icons.healing),
-                title: Text('Symptoms and Precautions'),
+                title: Text('Symp & Pre'),
                 activeColor: Colors.red,
                 textAlign: TextAlign.center,
                 inactiveColor: Colors.grey,
