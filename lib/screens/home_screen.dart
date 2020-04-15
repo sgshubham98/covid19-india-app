@@ -1,6 +1,7 @@
 import 'package:covid19_app/screens/precautions_screen.dart';
 import 'package:covid19_app/screens/symptoms_screen.dart';
 import 'package:covid19_app/widgets/reusable_container.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:covid19_app/widgets/display_card.dart';
 import 'package:covid19_app/utilities/constants.dart';
@@ -82,16 +83,19 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         return;
       }
       currentTime = DateFormat.jm().format(now);
-      lastupdatedtime =
-          apiData['key_values'][0]['lastupdatedtime'].substring(0, 10) + ' ';
+      /* Overall data */
+      lastupdatedtime = apiData['statewise'][0]['lastupdatedtime'].substring(0, 10) + ' ';
       lastupdatedtime += currentTime;
-      confirmedDelta = int.parse(apiData['key_values'][0]['confirmeddelta']);
-      deceasedDelta = int.parse(apiData['key_values'][0]['deceaseddelta']);
-      recoveredDelta = int.parse(apiData['key_values'][0]['recovereddelta']);
+      confirmedDelta = int.parse(apiData['statewise'][0]['deltaconfirmed']);
+      deceasedDelta = int.parse(apiData['statewise'][0]['deltadeaths']);
+      recoveredDelta = int.parse(apiData['statewise'][0]['deltarecovered']);
       confirmed = int.parse(apiData['statewise'][0]['confirmed']);
       deceased = int.parse(apiData['statewise'][0]['deaths']);
       active = int.parse(apiData['statewise'][0]['active']);
       recovered = confirmed - active - deceased;
+      /* Overall data ends */
+      
+      /* Data for chart */
       caseTimeSeries = apiData['cases_time_series'];
       for (int i = 0; i < caseTimeSeries.length; i++) {
         chartList.add(
@@ -106,6 +110,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         totalDeathsList.add(int.parse(caseTimeSeries[i]['totaldeceased']));
         totalRecoveredList.add(int.parse(caseTimeSeries[i]['totalrecovered']));
       }
+      /* Data for chart ends */
+      
       animation = CurvedAnimation(
         parent: animationController,
         curve: Curves.ease,
@@ -170,13 +176,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                         ),
                                         onTap: () {
                                           setState(() {
-                                            // Navigator.push(
-                                            //   context,
-                                            //   MaterialPageRoute(
-                                            //     builder: (context) =>
-                                            //         SymptomsScreen(),
-                                            //   ),
-                                            // );
                                             currentIndex = 2;
                                           });
                                         },
@@ -336,6 +335,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 showVerticalIndicator: false,
                                 showDataPoints: true,
                                 backgroundColor: Colors.white10,
+                                // displayYAxis: true,
                               ),
                             ),
                             decoration: BoxDecoration(
@@ -416,6 +416,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               ),
             ],
           ),
+          drawerDragStartBehavior: DragStartBehavior.start,
         ),
       ),
     );
