@@ -140,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           buttonText: 'Tap to know more',
                           onTap: () {
                             setState(() {
-                              currentIndex = 3;
+                              currentIndex = 2;
                             });
                           },
                           left: 5.0,
@@ -292,7 +292,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           buttonText: 'Tap to know more',
                           onTap: () {
                             setState(() {
-                              currentIndex = 3;
+                              currentIndex = 2;
                             });
                           },
                           left: 6.0,
