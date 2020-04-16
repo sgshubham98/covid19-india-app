@@ -10,7 +10,7 @@ Mobile App for COVID-19 stats in India, sourced from [The Ministry of Health and
 and separately from [unofficial sources](#unofficial-sources).
 
 ## Download APK
-Download COVID-19 India APK [here](apk/covid-19india.apk)
+Download COVID-19 India APK [here](apk/covid19-india.apk)
 
 <!-- ## API -->
 
