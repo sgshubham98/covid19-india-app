@@ -154,14 +154,14 @@ class _AboutScreenState extends State<AboutScreen> {
                       ),
                     ),
                     TextSpan(
-                      text: 'Shubham Goswami',
+                      text: 'DSC KIET',
                       style: TextStyle(
                         color: Colors.blue,
                       ),
                       recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             launch(
-                                'https://github.com/sgshubham98');
+                                'https://dsckiet.netlify.com');
                           },
                     ),
                   ],

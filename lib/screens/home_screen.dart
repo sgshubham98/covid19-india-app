@@ -83,10 +83,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         recovered = -1;
         return;
       }
-      currentTime = DateFormat.jm().format(now);
+      currentTime = DateFormat.yMd().add_jm().format(now);
       /* Overall data */
-      lastupdatedtime =
-          apiData['statewise'][0]['lastupdatedtime'].substring(0, 10) + ' ';
+      lastupdatedtime = "";
       lastupdatedtime += currentTime;
       confirmedDelta = int.parse(apiData['statewise'][0]['deltaconfirmed']);
       deceasedDelta = int.parse(apiData['statewise'][0]['deltadeaths']);
@@ -185,7 +184,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             bottom: 8.0,
                           ),
                           child: Text(
-                            'Last updated : $lastupdatedtime',
+                            'Last refreshed : $lastupdatedtime',
                             style: TextStyle(
                               color: Colors.black54,
                             ),
@@ -307,9 +306,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 )
               : (currentIndex == 1
                   ? StateScreen(stateData: widget.modelData)
-                  : (currentIndex == 3)
-                      ? PreSympScreen()
-                      : (currentIndex == 4) ? AboutScreen() : SymptomsScreen()),
+                  : (currentIndex == 2)
+                      ? PreSympScreen() : AboutScreen()),
+                      // : (currentIndex == 4) ? AboutScreen() : SymptomsScreen()),
           bottomNavigationBar: BottomNavyBar(
             selectedIndex: currentIndex,
             showElevation: true,
@@ -333,15 +332,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 textAlign: TextAlign.center,
                 inactiveColor: Colors.grey,
               ),
-              BottomNavyBarItem(
-                icon: Icon(Icons.local_hospital),
-                title: Text(
-                  'Medical',
-                ),
-                activeColor: Colors.red,
-                textAlign: TextAlign.center,
-                inactiveColor: Colors.grey,
-              ),
+              // BottomNavyBarItem(
+              //   icon: Icon(Icons.local_hospital),
+              //   title: Text(
+              //     'Medical',
+              //   ),
+              //   activeColor: Colors.red,
+              //   textAlign: TextAlign.center,
+              //   inactiveColor: Colors.grey,
+              // ),
               BottomNavyBarItem(
                 icon: Icon(Icons.healing),
                 title: Text('Symp & Pre'),
